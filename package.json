@@ -1,0 +1,17 @@
+{
+  "name": "node_cameoi",
+  "version": "1.0.0",
+  "description": "This App will download all of available videos from your fullStack EOI campus account. Enjoy :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "prompt": "^1.2.0",
+    "puppeteer": "^11.0.0"
+  }
+}
