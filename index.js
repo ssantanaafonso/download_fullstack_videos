@@ -144,5 +144,5 @@ function getRandomInt(min, max) {
       diaVideo = semana.classes[0];
     }
     
-    return `${semana.name}_${diaVideo.day}_${day+month+year}_${time}`
+    return `${semana.name}_${semana.subject}_${diaVideo.day}_${day+month+year}_${time}`
   }
