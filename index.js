@@ -6,24 +6,19 @@ const dotenv = require('dotenv');
 const { default: axios } = require('axios');
 const fs = require("fs");
 dotenv.config();
-
+let rawdata = fs.readFileSync('classes.json');
+let classes = JSON.parse(rawdata);
 (async () => {
+    prompt.start();
     console.log("Abriendo web EOI...");
-    const browser = await puppeteer.launch({
-        headless: false,
-        executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe"
-    });
+    const browser = await puppeteer.launch();
     let page = await browser.newPage();
     await page.goto(EOI_LOGIN, {waitUntil: 'networkidle0'}); 
     await page.click('#agree_button');
     console.log("Introduce tu nombre de usuario y contraseña para acceder");
-    //Esto era para pedir por el prompt usuario y contraseña
-    // prompt.start();
-    // const {username, password} = await prompt.get(['username', 'password']);
-    const username = process.env.USER;
-    const password = process.env.PASSWORD;
-    console.log(username);
-    console.log(password);
+    // Pedimos el prompt usuario y contraseña
+    
+    const {username, password} = await prompt.get(['username', 'password']);
 
     await page.type('#user_id', username);
     await page.type('#password', password);
@@ -37,7 +32,6 @@ dotenv.config();
     await page.waitForNavigation({waitUntil: 'networkidle0'})
 
     console.log("Abriendo apartado de acceso a grabaciones");
-    // page.click('span[title="Acceso a Grabaciones Videoconferencias"]');
     const newPagePromise = new Promise(x => page.once('popup', x));
     await page.evaluate(() => {
         document.querySelector('span[title="Acceso a Grabaciones Videoconferencias"]').parentElement.click();
@@ -46,57 +40,62 @@ dotenv.config();
     const newPage = await newPagePromise;
     await newPage.waitForNavigation({waitUntil: 'networkidle0'})
 
+    //Ruta donde quieres guardar los archivos
+    console.log("Elige la ruta donde quieres guardar los archivos. Para rutas en windows debes usar \\\\.");
+    console.log("Por ejemplo en vez de C:\\Users deberías introducir C:\\\\Users");
+    const {path} = await prompt.get(['path']);
+    console.log("Cargando páginas de descarga...");
     //Evaluate solo puede devolver strings
     const videoLinksRaw = await newPage.evaluate(() => {
 
         let elements = Array.from(document.querySelectorAll("tr a"));
-        const regex = /\W/gm;
 
         return links = elements.map(el => {
+          const date = el.closest("tr").children[3].innerText
             return JSON.stringify({
-                date: el.closest("tr").children[3].innerText.replace(regex, ''),
+                date: date,
                 url: el.href
             })
         })
     })
-    //Por lo tanto aqui tengo que transformar esas string en array para manipular los bojetos más facilmente.
+    //Por lo tanto aqui tengo que transformar esas string en array para manipular los objetos más facilmente.
     const videoLinksFormated = videoLinksRaw.map(el => JSON.parse(el))
 
     // Recorremos la colección de enlaces para acceder a las distintas páginas e ir haciendo las descargas
+    let i = 0;
     for (const videoLink of videoLinksFormated) {
-        console.log(videoLink);
+        i++;
         let videoPage = await browser.newPage();
-        await videoPage.goto(videoLink.url, {waitUntil: 'networkidle0'});
-    
+        await videoPage.goto(videoLink.url, {timeout:0, waitUntil: 'networkidle0'});
+        await videoPage.waitForSelector("video", {visible:true});
         const link = await videoPage.evaluate(() => {
-            console.log(document.querySelector("video source").src);
-            return document.querySelector("video source").src;
+            let test = document.querySelector("video").src;
+            //Parece que la eoi ha actualizado el collab y ahora tienen tipos de páginas mezcladas, por eso hay que hacer 2 comprobaciones.
+            if(test == ""){
+              return document.querySelector("video source").src
+            }else{
+              return test
+            } 
         })
+        console.log(`Descargando video: ${i} de ${videoLinksFormated.length}`);
+        console.log(`---------------------------------------------------------------------------------------------------------------`);
+        //Sacamos del fichero classes.json los titulos de los videos
+        const videoTitle = getVideoTitle(videoLink.date)
         //Descargamos el video
-        await downloadFile(link, `${process.env.VIDEO}\\${videoLink.date}.mp4`)
+        await downloadFile(link, `${path}\\${videoTitle}.mp4`);
         await videoPage.close();
     }
 })();
 
 function downloadFile(url, outputLocationPath){
-    // return axios({
-    //     method: "get",
-    //     url: url,
-    //     responseType: "blob"
-    // }).then(res => {
-    //     fs.writeFile(outputLocationPath, res.data, err=> {
-    //         if(err) console.log(err);
-    //         console.log("Todo bien todo correcto, y yo que me alegrou");
-    //     })
-    // })
-    const writer = fs.createWriteStream(`${outputLocationPath}`);
-    
+  const writer = fs.createWriteStream(`${outputLocationPath}`);
   return axios({
     method: 'get',
     url: url,
     responseType: 'stream',
-  }).then(response => {
-
+    
+  })
+  .then(response => {
     //ensure that the user can call `then()` only when the file has
     //been downloaded entirely.
 
@@ -121,4 +120,29 @@ function downloadFile(url, outputLocationPath){
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  function getVideoTitle(date){
+    const regex = /\W/gm;
+    date = date.replace(regex, " ").split(" ");
+    const day = date[0];
+    const month =date[1];
+    const year = date[2];
+    const time = `${date[3]}${date[4]}`;
+    const videoDate = parseInt(`${year}${month}${day}`)
+    const semana = classes.find(week => {
+      const startDate = parseInt(week.start_Date);
+      const endDate = parseInt(week.end_Date);
+      return videoDate >= startDate && videoDate <= endDate;
+    });
+    let diaVideo;
+    if(!semana.name == "Semana_proyecto"){
+      diaVideo = semana.classes.find(el => {
+        return parseInt(el.date) === videoDate
+      });
+    }else{
+      diaVideo = semana.classes[0];
+    }
+    
+    return `${semana.name}_${diaVideo.day}_${day+month+year}_${time}`
   }

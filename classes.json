@@ -1,0 +1,238 @@
+[
+    {
+        "name": "Semana_1",
+        "subject": "FrontEnd+HTML+CSS",
+        "teacher": "Carlos López",
+        "start_Date": "20210920",
+        "end_Date": "20211024",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20210920"
+            },
+            {
+                "day": "dia_2",
+                "date": "20210921"
+            },
+            {
+                "day": "dia_3",
+                "date": "20210922"
+            },
+            {
+                "day": "dia_4",
+                "date": "20210923"
+            },
+            {
+                "day": "dia_5",
+                "date": "20210924"
+            }
+        ]
+    },
+    {
+        "name": "Semana_2",
+        "subject": "JS_BASICO",
+        "teacher": "Jose Luis González",
+        "start_Date": "20210927",
+        "end_Date": "20210929",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20210927"
+            },
+            {
+                "day": "dia_2",
+                "date": "20210928"
+            },
+            {
+                "day": "dia_3",
+                "date": "20210929"
+            }
+        ]
+    },
+    {
+        "name": "Semana_2",
+        "subject": "JS_INTERMEDIO",
+        "teacher": "Jose Luis González",
+        "start_Date": "20210930",
+        "end_Date": "20211001",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20210930"
+            },
+            {
+                "day": "dia_2",
+                "date": "20211001"
+            }
+        ]
+    },
+    {
+        "name": "Semana_3",
+        "subject": "MASTERCLASS_GIT",
+        "teacher": "Yodra López",
+        "start_Date": "20211004",
+        "end_Date": "20211004",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211004"
+            }
+        ]
+    },
+    {
+        "name": "Semana_3",
+        "subject": "JS_AVANZADO",
+        "teacher": "Jose Luis González",
+        "start_Date": "20211005",
+        "end_Date": "20211005",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211005"
+            }
+        ]
+    },
+    {
+        "name": "Semana_3",
+        "subject": "MASTERCLASS - TYPESCRIPT",
+        "teacher": "Ignacio García",
+        "start_Date": "20211006",
+        "end_Date": "20211006",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211006"
+            }
+        ]
+    },
+    {
+        "name": "Semana_3",
+        "subject": "ANGULAR",
+        "teacher": "José Luis González",
+        "start_Date": "20211007",
+        "end_Date": "20211008",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211007"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211008"
+            }
+        ]
+    },
+    {
+        "name": "Semana_4",
+        "subject": "ANGULAR",
+        "teacher": "José Luis González",
+        "start_Date": "20211013",
+        "end_Date": "20211015",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211013"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211014"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211015"
+            }
+        ]
+    },
+    {
+        "name": "Semana_5",
+        "subject": "NODEJS+EXPRESS",
+        "teacher": "José Luis González",
+        "start_Date": "20211018",
+        "end_Date": "20211022",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211018"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211019"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211020"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211021"
+            },
+            {
+                "day": "dia_1",
+                "date": "20211022"
+            }
+        ]
+    },
+    {
+        "name": "Semana_6",
+        "subject": "DESPLEGANDO EN AWS",
+        "teacher": "Raul Morales",
+        "start_Date": "20211025",
+        "end_Date": "20211103",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211025"
+            },
+            {
+                "day": "dia_2",
+                "date": "20211026"
+            },
+            {
+                "day": "dia_3",
+                "date": "20211028"
+            },
+            {
+                "day": "dia_4",
+                "date": "20211029"
+            },
+            {
+                "day": "dia_5",
+                "date": "20211102"
+            },
+            {
+                "day": "dia_6",
+                "date": "20211103"
+            }
+        ]
+    },
+    {
+        "name": "Semana_7_8",
+        "subject": "PROYECTO_COMPLETO_SPA",
+        "teacher": "José Luis González",
+        "start_Date": "20211105",
+        "end_Date": "20211112",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211105"
+            },
+            {
+                "day": "dia_2",
+                "date": "20211112"
+            }
+        ]
+    },
+    {
+        "name": "Semana_proyecto",
+        "subject": "PROYECTO_COMPLETO_SPA",
+        "teacher": "José Luis González",
+        "start_Date": "20211113",
+        "end_Date": "20211208",
+        "classes": [
+            {
+                "day": "dia_x",
+                "date": "semanas_proyecto"
+            }
+        ]
+    }
+]
