@@ -4,7 +4,7 @@
         "subject": "FrontEnd+HTML+CSS",
         "teacher": "Carlos López",
         "start_Date": "20210920",
-        "end_Date": "20211024",
+        "end_Date": "20210924",
         "classes": [
             {
                 "day": "dia_1",
@@ -117,7 +117,7 @@
                 "date": "20211007"
             },
             {
-                "day": "dia_1",
+                "day": "dia_2",
                 "date": "20211008"
             }
         ]
@@ -134,11 +134,11 @@
                 "date": "20211013"
             },
             {
-                "day": "dia_1",
+                "day": "dia_2",
                 "date": "20211014"
             },
             {
-                "day": "dia_1",
+                "day": "dia_3",
                 "date": "20211015"
             }
         ]
@@ -155,19 +155,19 @@
                 "date": "20211018"
             },
             {
-                "day": "dia_1",
+                "day": "dia_2",
                 "date": "20211019"
             },
             {
-                "day": "dia_1",
+                "day": "dia_3",
                 "date": "20211020"
             },
             {
-                "day": "dia_1",
+                "day": "dia_4",
                 "date": "20211021"
             },
             {
-                "day": "dia_1",
+                "day": "dia_15",
                 "date": "20211022"
             }
         ]
@@ -188,6 +188,10 @@
                 "date": "20211026"
             },
             {
+                "day": "empleabilidad",
+                "date": "20211027"
+            },
+            {
                 "day": "dia_3",
                 "date": "20211028"
             },
@@ -206,16 +210,46 @@
         ]
     },
     {
-        "name": "Semana_7_8",
+        "name": "Semana_7",
         "subject": "PROYECTO_COMPLETO_SPA",
         "teacher": "José Luis González",
         "start_Date": "20211105",
-        "end_Date": "20211112",
+        "end_Date": "20211105",
         "classes": [
             {
                 "day": "dia_1",
                 "date": "20211105"
+            }
+        ]
+    },
+    {
+        "name": "Semana_8",
+        "subject": "REACT",
+        "teacher": "Javier Velasco",
+        "start_Date": "20211109",
+        "end_Date": "20211111",
+        "classes": [
+            {
+                "day": "dia_1",
+                "date": "20211109"
             },
+            {
+                "day": "dia_2",
+                "date": "20211110"
+            },
+            {
+                "day": "dia_3",
+                "date": "20211111"
+            }
+        ]
+    },
+    {
+        "name": "Semana_8",
+        "subject": "PROYECTO_COMPLETO_SPA",
+        "teacher": "José Luis González",
+        "start_Date": "20211112",
+        "end_Date": "20211112",
+        "classes": [
             {
                 "day": "dia_2",
                 "date": "20211112"

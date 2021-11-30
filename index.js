@@ -17,11 +17,19 @@ let classes = JSON.parse(rawdata);
     await page.click('#agree_button');
     console.log("Introduce tu nombre de usuario y contraseña para acceder");
     // Pedimos el prompt usuario y contraseña
-    
-    const {username, password} = await prompt.get(['username', 'password']);
+    const schema = {
+      username: {
+        required: true
+      },
+      password: {
+        hidden: true
+      }
+    }
+    const {username, password} = await prompt.get(['username', 'password'])
 
     await page.type('#user_id', username);
     await page.type('#password', password);
+    
 
     console.log("Logueando al usuario");
     page.click('#entry-login');
@@ -85,6 +93,8 @@ let classes = JSON.parse(rawdata);
         await downloadFile(link, `${path}\\${videoTitle}.mp4`);
         await videoPage.close();
     }
+    console.log("Descarga finalizada, disfruta de las clases :)");
+    await browser.close()
 })();
 
 function downloadFile(url, outputLocationPath){
@@ -136,7 +146,10 @@ function getRandomInt(min, max) {
       return videoDate >= startDate && videoDate <= endDate;
     });
     let diaVideo;
-    if(!semana.name == "Semana_proyecto"){
+    if(!semana) {
+      return `clase_no_contemplada_${day+month+year}_${time}`;
+    }
+    if(semana.name != "Semana_proyecto"){
       diaVideo = semana.classes.find(el => {
         return parseInt(el.date) === videoDate
       });
